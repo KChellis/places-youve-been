@@ -4,6 +4,9 @@ function Place(place, year, landmark, note){
   this.landmark=landmark;
   this.note=note;
 }
+Place.prototype.landmarkArray = function() {
+  return this.landmark.split(", ");
+}
 
 
 $(function() {
@@ -14,8 +17,8 @@ $(function() {
     var landmark=$("#notable-landmark").val();
     var note=$("#additional-note").val();
     var newPlace = new Place(place, year, landmark, note);
+    var landmarks = newPlace.landmarkArray();
     $("#places").prepend("<li><span class='place'>" + newPlace.place + "</span></li>");
-
     $("#new-place").val("");
     $("#year").val("");
     $("#notable-landmark").val("");
@@ -25,7 +28,10 @@ $(function() {
       $("#show-info").show();
       $(".location").text(newPlace.place);
       $(".year").text(newPlace.year);
-      $(".notable-landmark").text(newPlace.landmark);
+      for (var i = 0; i < landmarks.length; i++) {
+        $(".notable-landmark").append("<li>" + landmarks[i] + "</li>");
+      }
+
       $(".additional-note").text(newPlace.note);
     });
   });
