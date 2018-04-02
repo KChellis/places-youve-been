@@ -21,9 +21,12 @@ $(function() {
     $("#notable-landmark").val("");
     $("#additional-note").val("");
 
-    $(".place").last().click(function(){
+    $(".place").first().click(function(){
       $("#show-info").show();
-      $("#show-info h2").text(newPlace.place);
+      $(".location").text(newPlace.place);
+      $(".year").text(newPlace.year);
+      $(".notable-landmark").text(newPlace.landmark);
+      $(".additional-note").text(newPlace.note);
     });
   });
 });
