@@ -14,6 +14,16 @@ $(function() {
     var landmark=$("#notable-landmark").val();
     var note=$("#additional-note").val();
     var newPlace = new Place(place, year, landmark, note);
-    $("#places").prepend("<li>" + newPlace.place + "</li>");
+    $("#places").prepend("<li><span class='place'>" + newPlace.place + "</span></li>");
+
+    $("#new-place").val("");
+    $("#year").val("");
+    $("#notable-landmark").val("");
+    $("#additional-note").val("");
+
+    $(".place").last().click(function(){
+      $("#show-info").show();
+      $("#show-info h2").text(newPlace.place);
+    });
   });
 });
